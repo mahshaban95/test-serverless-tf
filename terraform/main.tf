@@ -24,7 +24,7 @@ module "lambda_function" {
 
   function_name  = "my-lambda-mahsh-test"
   create_package = false
-  
+
   # Container Image
   image_uri    = module.docker_image.image_uri
   package_type = "Image"
