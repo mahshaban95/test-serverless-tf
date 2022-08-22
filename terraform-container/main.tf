@@ -24,10 +24,29 @@ module "lambda_function" {
 
   function_name  = "my-lambda-mahsh-test"
   create_package = false
+  publish        = true
 
   # Container Image
   image_uri    = module.docker_image.image_uri
   package_type = "Image"
+
+  # attach_tracing_policy = true
+  # Allowed triggers
+  # allowed_triggers = {
+  #   AllowExecutionFromAPIGateway = {
+  #     service    = "apigateway"
+  #     source_arn = "${module.api_gateway.apigatewayv2_api_execution_arn}/*/*"
+  #     stage      = ""
+  #   }
+  # }
+  # allowed_triggers = {
+  #   APIGatewayAny = {
+  #     service    = "apigateway"
+  #     source_arn = "${module.api_gateway.apigatewayv2_api_execution_arn}/*/*/${module.lambda_function.lambda_function_name}"
+  #     stage      = ""
+  #   }
+  # }
+
 }
 
 module "docker_image" {
